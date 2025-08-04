@@ -3,633 +3,537 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MNIS Premium Shop - Premium App Subscriptions</title>
+    <title>MINS Premium Shop - Exclusive Subscriptions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --primary-dark: #5649c0;
-            --whatsapp: #25D366;
-            --messenger: #0084FF;
-            --dark: #2d3436;
-            --light: #f5f6fa;
-            --success: #00b894;
-            --warning: #fdcb6e;
-            --danger: #d63031;
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --whatsapp-color: #25D366;
+            --dark-color: #1e1e2c;
+            --light-color: #f8f9fa;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: var(--light-color);
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
         }
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         }
-        .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-            justify-content: center;
-        }
-        .filter-btn {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--success);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        .product-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 1px solid #eee;
-        }
-        .product-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-category {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .product-title {
-            font-size: 1.25rem;
-            margin: 0 0 0.75rem;
-            color: var(--dark);
-        }
-        .product-description {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
-            flex-grow: 1;
-        }
-        .product-price {
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1rem;
         }
-        .product-period {
-            font-size: 0.9rem;
-            color: #777;
-            font-weight: normal;
+        
+        .logo-icon {
+            color: var(--primary-color);
+            margin-right: 10px;
         }
-        .product-features {
-            margin: 1rem 0;
-            padding-left: 1.25rem;
-            font-size: 0.9rem;
-        }
-        .product-features li {
-            margin-bottom: 0.5rem;
-        }
-        .product-actions {
-            margin-top: auto;
-            display: flex;
-            gap: 0.5rem;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
+        
+        .product-card {
             transition: all 0.3s ease;
             border: none;
-            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: white;
         }
-        .btn-primary {
-            background: var(--primary);
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .price-tag {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .whatsapp-btn {
+            background-color: var(--whatsapp-color);
             color: white;
+            border: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-        .btn-whatsapp {
-            background: var(--whatsapp);
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            transform: scale(1.02);
         }
-        .btn-whatsapp:hover {
-            background: #128C7E;
+        
+        .badge-premium {
+            background: linear-gradient(45deg, #ffd700, #ffaa00);
+            color: #000;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
         }
-        .btn-messenger {
-            background: var(--messenger);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
         }
-        .btn-messenger:hover {
-            background: #0066CC;
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
         }
-        .whatsapp-icon, .messenger-icon {
-            width: 20px;
-            height: 20px;
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        
         footer {
-            background: var(--dark);
+            background-color: var(--dark-color);
             color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 3rem;
+            padding: 40px 0 20px;
         }
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            color: white;
+        
+        .footer-links a {
+            color: #adb5bd;
             text-decoration: none;
+            transition: color 0.3s;
         }
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .social-link {
+        
+        .footer-links a:hover {
             color: white;
-            font-size: 1.5rem;
         }
-        .copyright {
-            opacity: 0.8;
-            font-size: 0.9rem;
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
         }
-
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            .product-actions {
-                flex-direction: column;
-            }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">MNIS PREMIUM SHOP</div>
-        <div class="tagline">Unlock premium features with our exclusive app subscriptions</div>
-    </header>
-
-    <div class="container">
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-category="all">All Apps</button>
-            <button class="filter-btn" data-category="productivity">Productivity</button>
-            <button class="filter-btn" data-category="photo">Photo & Video</button>
-            <button class="filter-btn" data-category="utility">Utilities</button>
-            <button class="filter-btn" data-category="entertainment">Entertainment</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-crown logo-icon"></i>MINS Premium Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div class="products-grid">
-            <!-- App 1 -->
-            <div class="product-card" data-category="productivity">
-                <div class="product-badge">BESTSELLER</div>
-                <img src="https://via.placeholder.com/600x400?text=Pro+Task+Master" alt="Pro Task Master" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Productivity</span>
-                    <h3 class="product-title">Pro Task Master</h3>
-                    <p class="product-description">Advanced task management with AI scheduling and team collaboration features.</p>
-                    <ul class="product-features">
-                        <li>Unlimited projects & tasks</li>
-                        <li>AI-powered scheduling</li>
-                        <li>Team collaboration tools</li>
-                    </ul>
-                    <div class="product-price">$49.99 <span class="product-period">/ lifetime</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Pro Task Master', 49.99, 'Lifetime License')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Pro Task Master', 49.99, 'Lifetime License')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+    <!-- Hero Section -->
+    <section class="py-5 bg-gradient text-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">MNIS PREMIUM SHOP</h1>
+                    <p class="lead mb-4">Unlock exclusive content with MINS Premium Shop's curated collection of premium subscriptions. Elevate your digital experience today.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#products" class="btn btn-light btn-lg px-4">View Products</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
                     </div>
                 </div>
-            </div>
-
-            <!-- App 2 -->
-            <div class="product-card" data-category="photo">
-                <img src="https://via.placeholder.com/600x400?text=Photo+Pro+FX" alt="Photo Pro FX" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Photo & Video</span>
-                    <h3 class="product-title">Photo Pro FX</h3>
-                    <p class="product-description">Professional photo editing suite with 200+ filters and AI enhancements.</p>
-                    <ul class="product-features">
-                        <li>200+ professional filters</li>
-                        <li>AI photo enhancement</li>
-                        <li>Batch processing</li>
-                    </ul>
-                    <div class="product-price">$7.99 <span class="product-period">/ month</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Photo Pro FX', 7.99, 'Monthly Subscription')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Photo Pro FX', 7.99, 'Monthly Subscription')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
-                    </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Premium Subscriptions" class="img-fluid rounded-3 shadow">
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- App 3 -->
-            <div class="product-card" data-category="utility">
-                <div class="product-badge">NEW</div>
-                <img src="https://via.placeholder.com/600x400?text=Secure+Vault+Pro" alt="Secure Vault Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Utilities</span>
-                    <h3 class="product-title">Secure Vault Pro</h3>
-                    <p class="product-description">Military-grade encryption for your sensitive files and passwords.</p>
-                    <ul class="product-features">
-                        <li>256-bit AES encryption</li>
-                        <li>Biometric authentication</li>
-                        <li>Cloud backup</li>
-                    </ul>
-                    <div class="product-price">$59.99 <span class="product-period">/ lifetime</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Secure Vault Pro', 59.99, 'Lifetime License')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Secure Vault Pro', 59.99, 'Lifetime License')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold section-title">Our Premium Products</h2>
+            <p class="text-center text-muted mb-5">Choose from our exclusive collection of premium subscriptions</p>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Product 1 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             class="product-img" alt="Streaming Elite">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title mb-0">Youtube Premium(non renewable)</h5>
+                                <span class="badge-premium">BESTSELLER</span>
+                            </div>
+                            <p class="card-text text-muted">Unlimited access to premium streaming content in 4K</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Ads free Movies & Videos</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>4K Ultra HD Quality</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Background Play</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Exclusive Originals</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">৳25</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Youtube Premium(non renewable) - ৳25/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- App 4 -->
-            <div class="product-card" data-category="entertainment">
-                <img src="https://via.placeholder.com/600x400?text=Movie+Club+Pro" alt="Movie Club Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Entertainment</span>
-                    <h3 class="product-title">Movie Club Pro</h3>
-                    <p class="product-description">Curated movie recommendations and watchlist manager for cinephiles.</p>
-                    <ul class="product-features">
-                        <li>Personalized recommendations</li>
-                        <li>Unlimited watchlists</li>
-                        <li>Exclusive reviews</li>
-                    </ul>
-                    <div class="product-price">$4.99 <span class="product-period">/ month</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Movie Club Pro', 4.99, 'Monthly Subscription')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Movie Club Pro', 4.99, 'Monthly Subscription')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+                <!-- Product 2 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             class="product-img" alt="Music Pro">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Spotify Pro</h5>
+                            <p class="card-text text-muted">Premium music streaming without limits</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>70+ Million Songs</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>High Quality Audio</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Offline Listening</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Exclusive Releases</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">৳219</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Spotify Pro - ৳219/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- App 5 -->
-            <div class="product-card" data-category="productivity">
-                <img src="https://via.placeholder.com/600x400?text=Focus+Timer+Pro" alt="Focus Timer Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Productivity</span>
-                    <h3 class="product-title">Focus Timer Pro</h3>
-                    <p class="product-description">Advanced Pomodoro timer with analytics and productivity tracking.</p>
-                    <ul class="product-features">
-                        <li>Custom timer intervals</li>
-                        <li>Productivity analytics</li>
-                        <li>Goal tracking</li>
-                    </ul>
-                    <div class="product-price">$29.99 <span class="product-period">/ lifetime</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Focus Timer Pro', 29.99, 'Lifetime License')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Focus Timer Pro', 29.99, 'Lifetime License')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+                <!-- Product 3 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             class="product-img" alt="Netflix">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Netflix</h5>
+                            <p class="card-text text-muted">4K Ultra HD streaming subscription</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Unlimited ad-free movies, TV shows, and mobile games</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Exclusive Content</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Netflix spatial audio</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Watch in 4K (Ultra HD) + HDR</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">৳299</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Gaming Master - ৳299/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- App 6 -->
-            <div class="product-card" data-category="photo">
-                <div class="product-badge">POPULAR</div>
-                <img src="https://via.placeholder.com/600x400?text=Video+Editor+Pro" alt="Video Editor Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Photo & Video</span>
-                    <h3 class="product-title">Video Editor Pro</h3>
-                    <p class="product-description">Professional video editing on your mobile device with no watermark.</p>
-                    <ul class="product-features">
-                        <li>4K video editing</li>
-                        <li>100+ transitions</li>
-                        <li>Premium music library</li>
-                    </ul>
-                    <div class="product-price">$9.99 <span class="product-period">/ month</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Video Editor Pro', 9.99, 'Monthly Subscription')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Video Editor Pro', 9.99, 'Monthly Subscription')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+                <!-- Product 4 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             class="product-img" alt="Fitness Pro">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Fitness Pro</h5>
+                            <p class="card-text text-muted">Premium fitness and wellness programs</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>1000+ Workouts</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Personalized Plans</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Live Classes</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Nutrition Guides</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">$12.99</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Fitness Pro - $12.99/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- App 7 -->
-            <div class="product-card" data-category="utility">
-                <img src="https://via.placeholder.com/600x400?text=Clean+Master+Pro" alt="Clean Master Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Utilities</span>
-                    <h3 class="product-title">Clean Master Pro</h3>
-                    <p class="product-description">Optimize your device storage and boost performance with one tap.</p>
-                    <ul class="product-features">
-                        <li>Junk file cleaner</li>
-                        <li>Duplicate file finder</li>
-                        <li>Battery optimizer</li>
-                    </ul>
-                    <div class="product-price">$14.99 <span class="product-period">/ year</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Clean Master Pro', 14.99, 'Annual Subscription')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Clean Master Pro', 14.99, 'Annual Subscription')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+                <!-- Product 5 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c811329bcea1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             class="product-img" alt="Learning Hub">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Learning Hub</h5>
+                            <p class="card-text text-muted">Unlimited access to premium courses</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>5000+ Courses</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Expert Instructors</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Certifications</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Downloadable Resources</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">$15.99</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Learning Hub - $15.99/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- App 8 -->
-            <div class="product-card" data-category="entertainment">
-                <img src="https://via.placeholder.com/600x400?text=Music+Maestro" alt="Music Maestro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Entertainment</span>
-                    <h3 class="product-title">Music Maestro</h3>
-                    <p class="product-description">Premium music player with advanced equalizer and audio effects.</p>
-                    <ul class="product-features">
-                        <li>32-band equalizer</li>
-                        <li>Hi-Fi audio support</li>
-                        <li>Sleep timer</li>
-                    </ul>
-                    <div class="product-price">$19.99 <span class="product-period">/ lifetime</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('Music Maestro', 19.99, 'Lifetime License')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('Music Maestro', 19.99, 'Lifetime License')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- App 9 -->
-            <div class="product-card" data-category="productivity">
-                <img src="https://via.placeholder.com/600x400?text=PDF+Expert+Pro" alt="PDF Expert Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Productivity</span>
-                    <h3 class="product-title">PDF Expert Pro</h3>
-                    <p class="product-description">Edit, annotate and sign PDF documents on the go.</p>
-                    <ul class="product-features">
-                        <li>PDF editing tools</li>
-                        <li>Electronic signatures</li>
-                        <li>OCR text recognition</li>
-                    </ul>
-                    <div class="product-price">$39.99 <span class="product-period">/ lifetime</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('PDF Expert Pro', 39.99, 'Lifetime License')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('PDF Expert Pro', 39.99, 'Lifetime License')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- App 10 -->
-            <div class="product-card" data-category="utility">
-                <div class="product-badge">LIMITED</div>
-                <img src="https://via.placeholder.com/600x400?text=VPN+Shield+Pro" alt="VPN Shield Pro" class="product-image">
-                <div class="product-content">
-                    <span class="product-category">Utilities</span>
-                    <h3 class="product-title">VPN Shield Pro</h3>
-                    <p class="product-description">Premium VPN service with unlimited bandwidth and 50+ locations.</p>
-                    <ul class="product-features">
-                        <li>Unlimited bandwidth</li>
-                        <li>50+ server locations</li>
-                        <li>No logs policy</li>
-                    </ul>
-                    <div class="product-price">$5.99 <span class="product-period">/ month</span></div>
-                    <div class="product-actions">
-                        <button class="btn btn-whatsapp" onclick="orderViaWhatsApp('VPN Shield Pro', 5.99, 'Monthly Subscription')">
-                            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            WhatsApp
-                        </button>
-                        <button class="btn btn-messenger" onclick="orderViaMessenger('VPN Shield Pro', 5.99, 'Monthly Subscription')">
-                            <svg class="messenger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                                <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm.938 15.963l-2.685-2.868-5.134 2.868L9.338 7.56l2.685 2.869 5.134-2.869-4.219 8.403z"/>
-                            </svg>
-                            Messenger
-                        </button>
+                <!-- Product 6 -->
+                <div class="col">
+                    <div class="card product-card h-100">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80" 
+                             class="product-img" alt="Photo Pro">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Photo Pro</h5>
+                            <p class="card-text text-muted">Premium photo editing tools and assets</p>
+                            <ul class="list-group list-group-flush mb-4">
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Advanced Editing Tools</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>1000+ Presets</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Cloud Storage</li>
+                                <li class="list-group-item border-0 ps-0"><i class="fas fa-check-circle text-success me-2"></i>Premium Stock Photos</li>
+                            </ul>
+                            <div class="text-center mb-4">
+                                <span class="price-tag">$11.99</span>
+                                <span class="text-muted">/month</span>
+                            </div>
+                            <button onclick="buyViaWhatsApp('Photo Pro - $11.99/month')" 
+                                    class="btn whatsapp-btn w-100 py-2">
+                                <i class="fab fa-whatsapp me-2"></i> Subscribe Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center fw-bold section-title">Why Choose MINS Premium?</h2>
+            <p class="text-center text-muted mb-5">Discover the benefits of our premium subscriptions</p>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Instant Access</h4>
+                        <p class="text-muted">Get immediate access to all premium content after subscription confirmation through WhatsApp.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p class="text-muted">Our dedicated support team is available anytime you need help via WhatsApp chat.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure Payments</h4>
+                        <p class="text-muted">All transactions are processed securely through verified payment methods.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-4">Have Questions?</h2>
+                    <p class="lead mb-5">Contact us directly via WhatsApp for any inquiries about our premium subscriptions</p>
+                    
+                    <a href="#" onclick="openWhatsAppChat()" class="btn whatsapp-btn btn-lg px-5 py-3">
+                        <i class="fab fa-whatsapp fa-2x me-3"></i>
+                        <span style="font-size: 1.2rem;">Chat with Us on WhatsApp</span>
+                    </a>
+                    
+                    <div class="mt-5">
+                        <h5 class="mb-3">Or reach us at</h5>
+                        <p class="mb-1"><i class="fas fa-envelope me-2"></i>mnispremiumzone@gmail.com</p>
+                        <p><i class="fas fa-phone me-2"></i>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div class="footer-logo">MNIS PREMIUM SHOP</div>
-        <div class="footer-links">
-            <a href="#" class="footer-link">About Us</a>
-            <a href="#" class="footer-link">Contact</a>
-            <a href="#" class="footer-link">Privacy Policy</a>
-            <a href="#" class="footer-link">Terms of Service</a>
-            <a href="#" class="footer-link">Refund Policy</a>
-        </div>
-        <div class="social-links">
-            <a href="#" class="social-link">📱</a>
-            <a href="#" class="social-link">📘</a>
-            <a href="#" class="social-link">📸</a>
-            <a href="#" class="social-link">🐦</a>
-        </div>
-        <div class="copyright">
-            © 2023 MNIS Premium Shop. All rights reserved.
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-4"><i class="fas fa-crown me-2"></i>MINS Premium Shop</h5>
+                    <p>Your destination for premium digital subscriptions and exclusive content.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#products">Products</a></li>
+                        <li class="mb-2"><a href="#features">Features</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-4">Legal</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Refund Policy</a></li>
+                        <li class="mb-2"><a href="#">Subscription Terms</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe to get updates on new premium subscriptions</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="mt-4" style="border-color: rgba(255,255,255,0.1);">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 MINS Premium Shop. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> for premium users</p>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Replace with your actual WhatsApp number (without + or 0)
-        const whatsappNumber = '1234567890';
+        // WhatsApp integration
+        function buyViaWhatsApp(product) {
+            // Replace with your actual WhatsApp number (with country code, no + or 0)
+            const whatsappNumber = "+8801763652976";
+            
+            // Customize your message
+            const message = `Hello MINS Premium Shop! I would like to subscribe to: ${product}. Please provide payment details.`;
+            
+            // Open WhatsApp chat
+            window.open(`https://wa.me/{8801763652976}?text={encodeURIComponent(message)}`, '_blank');
+            
+            // Track the interest in localStorage (optional)
+            trackInterest(product, 'whatsapp');
+        }
         
-        // Replace with your Facebook Page ID for Messenger
-        const facebookPageId = 'your-page-id';
+        // General WhatsApp contact
+        function openWhatsAppChat() {
+            const whatsappNumber = "+8801763652976";
+            window.open(`https://wa.me/{8801763652976}`, '_blank');
+        }
         
-        // Filter products by category
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.dataset.category;
-                filterProducts(category);
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        // Simple interest tracking (no backend required)
+        function trackInterest(product, platform) {
+            // Get existing data or initialize
+            let interests = JSON.parse(localStorage.getItem('mins_interests')) || [];
+            
+            // Add new interest
+            interests.push({
+                product: product,
+                platform: platform,
+                date: new Date().toISOString()
+            });
+            
+            // Save back to localStorage
+            localStorage.setItem('mins_interests', JSON.stringify(interests));
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-        
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-card');
-            products.forEach(product => {
-                if (category === 'all' || product.dataset.category === category) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        }
-        
-        // WhatsApp Order Function
-        function orderViaWhatsApp(productName, price, licenseType) {
-            const message = `Hello MNIS Premium Shop!%0A%0AI want to order:%0A- ${productName} (${licenseType}) - $${price.toFixed(2)}%0A%0APlease send payment instructions.`;
-            window.open(`https://wa.me/{+8801763652976}?text={message}`, '_blank');
-        }
-        
-        // Messenger Order Function
-        function orderViaMessenger(productName, price, licenseType) {
-            const message = `I want to order: ${productName} (${licenseType}) - $${price.toFixed(2)}`;
-            window.open(`https://m.me/ew.r.siyam.sheikh}?text=${encodeURIComponent(message)}`, '_blank');
-        }
     </script>
 </body>
 </html>
